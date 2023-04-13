@@ -24,5 +24,6 @@ import AppFooter from "./components/AppFooter.vue";
 
 </template>
 
-<style>
+<style lang="scss">
+@use "./style/general.scss" as *;
 </style>

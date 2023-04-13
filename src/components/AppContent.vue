@@ -6,7 +6,15 @@ export default {
 </script>
 
 <template>
-<h1>io sono content</h1>
+    <section>
+        <h1>io sono content</h1>
+    </section>
 </template>
 
-<style></style>
+<style scoped>
+    section {
+        padding: 2rem 10rem;
+        background-color: black;
+        color: white;
+    }
+</style>
