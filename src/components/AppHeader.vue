@@ -22,47 +22,37 @@ export default {
 
 <template>
     <header>
-        <div class="logo">
-            <a href="#">
-                <img src="../assets/img/dc-logo.png" alt="">
-            </a>
-        </div>
-        <ul>
-            <li v-for="link in links" :class="{'active': link.current}">
-                <a :href="link.url">{{ link.text }}</a>
-            </li>
-        </ul>
+        <section>
+            <div class="logo">
+                <a href="#">
+                    <img src="../assets/img/dc-logo.png" alt="">
+                </a>
+            </div>
+            <ul>
+                <li v-for="link in links" :class="{'active': link.current}">
+                    <a :href="link.url">{{ link.text }}</a>
+                </li>
+            </ul>
+        </section>
     </header>
 </template>
 
 <style lang="scss" scoped>
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem 10rem;
+@use "../style/partials/mixins" as *;
+@use "../style/partials/variables" as *;
 
-
+section {
+    width: $default-width;
+    @include spacing(0 auto, 1rem);
+    @include flex(auto, space-between, auto, auto);
+    
     ul {
-        display: flex;
-        gap: 1rem;
+        @include flex(auto, auto, auto, 1rem);
         
         li {
             position: relative;
             padding: 0 .5rem;
             align-self: center;
-            
-            a::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                bottom: -50px;
-                width: 100%;
-                border-bottom: 10px solid blue;
-                display: none;
-            }
-            &:hover a::after{
-                display: block;
-            }
         }
     }
 }

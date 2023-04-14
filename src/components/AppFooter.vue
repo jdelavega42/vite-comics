@@ -8,4 +8,8 @@ export default {
 <h1>io sono footer</h1>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+@use "../style/partials/mixins" as *;
+@use "../style/partials/variables" as *;
+
+</style>
