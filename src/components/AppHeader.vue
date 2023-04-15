@@ -14,8 +14,18 @@ export default {
                 {text: "fans", url: "#", current: false},
                 {text: "news", url: "#", current: false},
                 {text: "shop", url: "#", current: false}
-            ]
+            ],
+            active: 0
         }
+    },
+    methods: {
+        getActiveIndex(currentIndex){
+            this.links.forEach(element => {
+                element.current = false;
+            });
+            this.links[currentIndex].current = true;
+        }
+
     }
 }
 </script>
@@ -29,8 +39,8 @@ export default {
                 </a>
             </div>
             <ul>
-                <li v-for="link in links" :class="{'active': link.current}">
-                    <a :href="link.url">{{ link.text }}</a>
+                <li v-for="(link, index) in links" :key="index" :class="{'active': link.current}">
+                    <a @click="getActiveIndex(index)" :href="link.url">{{ link.text }}</a>
                 </li>
             </ul>
         </section>
@@ -43,17 +53,36 @@ export default {
 
 section {
     width: $default-width;
-    @include spacing(0 auto, 1rem);
+    @include spacing(0 auto, 1rem 1rem 0);
     @include flex(auto, space-between, auto, auto);
     
     ul {
-        @include flex(auto, auto, auto, 1rem);
+        @include flex(row wrap, flex-start, stretch, 1rem);
         
         li {
+            height: 100%;
+            display: flex;
+            align-items: center;
             position: relative;
-            padding: 0 .5rem;
-            align-self: center;
+
+            a {
+                padding: 0 .5rem;
+
+            }
         }
+
     }
+
+}
+.active {
+    background: linear-gradient(180deg, white 0 90%, $primary-color 95%);
+}
+
+li:hover ::after {
+    content: '';
+        @include p-absolute(calc(100% - 5px), 0, 0);
+        width: 100%;
+        border-bottom: 5px solid $primary-color;
+        
 }
 </style>
