@@ -89,9 +89,13 @@ export default {
     <div class="jumbotron">
     </div>
     <main>
-        <section>
-            <AppCard v-for="card in posters" :series="card.series" :thumb="card.thumb"/>
-        </section>
+        <div class="container">
+            <div class="label" id="overlap"> CURRENT SERIES</div>
+            <section>
+                <AppCard v-for="card in posters" :series="card.series" :thumb="card.thumb"/>
+                <div class="label"> Load More</div>
+            </section>
+        </div>
     </main>
 </template>
 
@@ -107,12 +111,22 @@ export default {
 
     main {
         background-color: black;
-        width: $default-width;
-        @include spacing(0 auto, 1rem);
+        color: white;
 
-        section {
-            color: white;
-            @include flex(row wrap, center, flex-start);
+        .container {
+            width: $default-width;
+            @include spacing(0 auto, 0 1rem 1rem);
+            .label {
+                display: inline-block;
+                background-color: $primary-color;
+                padding: .75rem;
+                &#overlap {
+                    margin-top: -1rem;
+                }
+            }
+            section {
+                @include flex(row wrap, center, center);
+            }
         }
     }
 </style>

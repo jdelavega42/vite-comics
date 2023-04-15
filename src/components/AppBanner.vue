@@ -38,6 +38,8 @@ export default {
 @use "../style/partials/variables" as *;
 
     main {
+        position: relative;
+        z-index: 2;
         background-color: $primary-color;
         ul {
             width: $default-width;

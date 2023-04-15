@@ -16,21 +16,51 @@ export default {
 
 <template>
     <main>
-        <div class="list">
-            <ul>
-                <li  class="title" v-for="list in lists">
-                    <p>{{ list.name }}</p>
-                    <ul>
-                        <li class="subtitle" v-for="link in list.links">
-                            <a href="">{{ link }}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        <div class="container">
+            <div class="list">
+                <div class="column">
+                    <div class="section">
+                        <p  class="title">{{ lists[0].name }}</p>
+                        <ul>
+                            <li v-for="link in lists[0].links">
+                                <a class="subtitle" href="#">{{ link }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="section">
+                        <p  class="title">{{ lists[1].name }}</p>
+                        <ul>
+                            <li v-for="link in lists[1].links">
+                                <a class="subtitle" href="#">{{ link }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="section">
+                        <p  class="title">{{ lists[2].name }}</p>
+                        <ul>
+                            <li v-for="link in lists[2].links">
+                                <a class="subtitle" href="#">{{ link }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="section">
+                        <p  class="title">{{ lists[3].name }}</p>
+                        <ul>
+                            <li v-for="link in lists[3].links">
+                                <a class="subtitle" href="#">{{ link }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="logo">
+                <img src="../assets/img/dc-logo-bg.png" alt="">
+            </div>
         </div>
-        <!-- <div>
-            <img src="../assets/img/dc-logo-bg.png" alt="">
-        </div> -->
     </main>
 </template>
 
@@ -39,26 +69,38 @@ export default {
 @use "../style/partials/variables" as *;
     main {
         background-image: url(../assets/img/footer-bg.jpg);
+        background-repeat: no-repeat;
         color: white;
-        & .list {
-            height: 40rem;
-            width: $default-width;
-            @include spacing(0 auto, 1rem);
-            & ul {
-                width: 50%;
-                @include flex(column wrap, flex-start, flex-start, .5rem );
-                & .title {
-                    width: calc(100% / 3);
-                    font-weight: bolder;
 
-                    & ul {
-                        & .subtitle {
-                            font-weight: lighter;
+        .container {
+            width: $default-width;
+            @include flex(row, space-between, stretch);
+            @include spacing(0 auto, 1rem);
+            .list {
+                width: 40%;
+                @include flex(row wrap, flex-start, stretch);
+                .column {
+                    width: calc(100% / 3);
+                    .section {
+                        margin-bottom: .5rem;
+                        .title {
+                           font-size: 1.25rem;
+                           font-weight: bold; 
+                        }
+                        .subtitle{
+                            font-size: .75rem;
                         }
                     }
                 }
             }
+            .logo {
+                width: 400px;
+                position: relative;
+                img {
+                    @include p-absolute(50%, 50%, 1);
+                    transform: translate(50%, -50%);
+                }
+            }
         }
-        
     }
 </style>
